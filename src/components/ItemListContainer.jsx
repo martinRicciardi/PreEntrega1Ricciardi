@@ -11,12 +11,18 @@ export const ItemListContainer = (props) => {
     const [shoes, setShoes] = useState()
     const {categoryid} = useParams()
 
-    console.log(shoes);
-
     useEffect(() => {
-        fetch(`https://654abc445b38a59f28ee2f3f.mockapi.io/shoes`)
-        .then(res => res.json())
-        .then(data => setData(data))
+        const getData = async () => {
+            try{
+                const res = await fetch(`https://654abc445b38a59f28ee2f3f.mockapi.io/shoes`)
+                const data = await res.json()
+                setData(data)
+            }
+            catch (error){
+                console.log(error);
+            }
+        }
+        getData()
     },[])
 
     useEffect(() => {

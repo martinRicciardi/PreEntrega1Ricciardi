@@ -9,9 +9,17 @@ export const ItemDetailContainer = () => {
     const {id} = useParams()
 
     useEffect(() => {
-        fetch(`https://654abc445b38a59f28ee2f3f.mockapi.io/shoes/${id}`)
-        .then(res => res.json())
-        .then(data => setData(data))
+        const getData = async () => {
+            try{
+                const res = await fetch(`https://654abc445b38a59f28ee2f3f.mockapi.io/shoes/${id}`)
+                const data = await res.json()
+                setData(data)
+            }
+            catch (error){
+                console.log(error);
+            }
+        }
+        getData()
     },[id])
 
     return(
@@ -20,10 +28,7 @@ export const ItemDetailContainer = () => {
                     <Card.Img variant="top" src={data?.photo} />
                     <Card.Body>
                         <Card.Title>{data?.name}</Card.Title>
-                        <Card.Text>
-                        Some quick example text to build on the card title and make up the
-                        bulk of the card's content.
-                        </Card.Text>
+                        <Card.Text>{data?.price}</Card.Text>
                     </Card.Body>
                 </Card>
         </div>
