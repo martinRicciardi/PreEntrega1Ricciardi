@@ -2,8 +2,12 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { Button } from '@mui/material';
+import Container from '@mui/material/Container';
 
 export const ItemListContainer = (props) => {
 
@@ -32,20 +36,50 @@ export const ItemListContainer = (props) => {
     },[data, categoryid])
 
 return(
-        <div>
+        <>
             <h1>{props.gretting}</h1>
-            {shoes?.map(item => (
-                <Card style={{ width: '18rem' }} key={item.id}>
-                    <Card.Img variant="top" src={item.photo} />
-                    <Card.Body>
-                        <Card.Title>{item.name}</Card.Title>
-                        <Card.Text>{item.price}</Card.Text>
-                        <Link to={`/item/${item.id}`}>
-                            <Button variant="primary">Details</Button>
-                        </Link>
-                    </Card.Body>
-                </Card>
-            ))}
-        </div>
+                <Container maxWidth='xl' sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    flexWrap: 'wrap',
+                    justifyContent: 'space-around'
+                }}>
+                    
+                    {shoes?.map(item => (
+                        <Card sx={{ 
+                            m: 2,
+                            width: 430, 
+                            height: 600,
+                            boxShadow:10,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'space-between'
+                        }} key={item.id}>
+                            <Link to={`/item/${item.id}`}>
+                                <CardMedia
+                                    component="img"
+                                    height="450"
+                                    image={item.photo}
+                                    alt={item.name}
+                                />
+                            </Link>
+                                <CardContent sx={{p: 0, ml: 2}}>
+                                    <Typography variant="h5" component="div">{item.name}</Typography>
+                                </CardContent>
+                                <CardContent sx={{
+                                    display: 'flex',
+                                    justifyContent: 'space-around',
+                                    p: 0,
+                                    pb: 0,
+                                }}>
+                                    <Typography variant="h6" sx={{alignSelf: 'center'}}> USD {item.price}</Typography>
+                                    <Link to={`/cart`}>
+                                        <Button size="large" variant="contained" color="primary">Add Cart</Button>
+                                    </Link>
+                                </CardContent>
+                        </Card>
+                    ))}
+                </Container>
+        </>
     )
 }
