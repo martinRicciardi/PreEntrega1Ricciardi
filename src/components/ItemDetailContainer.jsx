@@ -1,17 +1,15 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
-import { CartContext } from "../context/CartContext";
 
 import Card from 'react-bootstrap/Card';
-import { Button } from '@mui/material';
+
 import { getFirestore, getDoc, doc } from "firebase/firestore"
+import { ItemCount } from "./ItemCount";
 
 export const ItemDetailContainer = () => {
 
     const [data, setData] = useState()
     const { id } = useParams()
-
-    const { add } = useContext(CartContext)
 
     useEffect(() => {
         const db = getFirestore()
@@ -31,7 +29,8 @@ export const ItemDetailContainer = () => {
             <Card.Body>
                 <Card.Title>{data?.name}</Card.Title>
                 <Card.Text>{data?.price}</Card.Text>
-                <Button size="large" onClick={() => add(data)} variant="contained" color="primary">Add Cart</Button>
+                <Card.Text>Stock: {data?.stock}</Card.Text>
+                <ItemCount data={data} initial={1} stock={data?.stock}/>
             </Card.Body>
         </Card>
     )
