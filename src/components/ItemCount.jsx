@@ -2,8 +2,12 @@ import { Button } from '@mui/material';
 import { CartContext } from "../context/CartContext";
 import { useContext, useState } from 'react'
 
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
-export const ItemQuantitySelector = ({ data, initial, stock }) => {
+export const ItemCount = ({ data, initial, stock }) => {
 
     const [count, setCount] = useState(initial)
     const { addItem } = useContext(CartContext)
@@ -17,11 +21,20 @@ export const ItemQuantitySelector = ({ data, initial, stock }) => {
     }
 
     return (
-        <>
-            <div>{count}</div>
-            <Button onClick={handleDecrease}>-</Button>
-            <Button onClick={handleIncrease}>+</Button>
-            <Button size="large" onClick={() => {addItem(data, count); setCount(initial)}} variant="contained" color="primary">Add Cart</Button>
-        </>
+        <Box sx={{
+            display : 'flex',
+            flexDirection: 'column'
+        }}>
+            <Box sx={{
+                display: 'flex',
+                justifyContent: 'space-evenly',
+                alignItems: 'center'
+            }}>
+                <ArrowDropDownIcon onClick={handleDecrease}></ArrowDropDownIcon>
+                <Typography variant='h5'>{count}</Typography>
+                <ArrowDropUpIcon onClick={handleIncrease}></ArrowDropUpIcon>
+            </Box>
+            <Button sx={{ backgroundColor: '#fff', boxShadow: 3, color: 'black'}} size="large" onClick={() => {addItem(data, count); setCount(initial)}} variant="contained" color="primary">Add Cart</Button>
+        </Box>
     )
 }

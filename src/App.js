@@ -5,6 +5,8 @@ import { NavBar } from './components/NavBar';
 import { Cart } from './components/Cart';
 import { CartProvider } from './context/CartContext';
 
+import './styles/App.css'
+
 function App() {
   return (
     <CartProvider>

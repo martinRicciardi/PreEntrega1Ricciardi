@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
+import { ItemDetail } from "./ItemDetail";
 
-import Card from 'react-bootstrap/Card';
+import Container from '@mui/material/Container';
+import Skeleton from '@mui/joy/Skeleton';
 
 import { getFirestore, getDoc, doc } from "firebase/firestore"
-import { ItemCount } from "./ItemCount";
 
 export const ItemDetailContainer = () => {
 
     const [data, setData] = useState()
+    const [loading, setLoading] = useState(true)
     const { id } = useParams()
 
     useEffect(() => {
+        setLoading(true)
         const db = getFirestore()
         const refDoc = doc(db, "items", id);
 
@@ -21,17 +24,26 @@ export const ItemDetailContainer = () => {
                 {id: snapshot.id, ...snapshot.data()}
             )
         })
+        .finally(() => setLoading(false))
     },[id])
 
     return(
-        <Card style={{ width: '18rem' }} key={data?.id}>
-            <Card.Img variant="top" src={data?.photo} />
-            <Card.Body>
-                <Card.Title>{data?.name}</Card.Title>
-                <Card.Text>{data?.price}</Card.Text>
-                <Card.Text>Stock: {data?.stock}</Card.Text>
-                <ItemCount data={data} initial={1} stock={data?.stock}/>
-            </Card.Body>
-        </Card>
+        <>
+            <Container maxWidth='xl' sx={{
+                height: { xs: '150vh', sm: '150vh', md: '92vh', lg: '92vh', xl: '92vh' },
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}>
+            {loading ?
+                <Skeleton animation='wave' sx={{ 
+                    width: 900, 
+                    height: { xs: 1200, sm: 1200, md: 700, lg: 700, xl: 700 },
+                }}/> 
+                : 
+                <ItemDetail data={data}/>
+            }
+            </Container> 
+        </>
     )
 }
