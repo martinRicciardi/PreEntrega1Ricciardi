@@ -37,7 +37,7 @@ export const ItemDetailContainer = () => {
             }}>
             {loading ?
                 <Skeleton animation='wave' sx={{ 
-                    width: 900, 
+                    maxWidth: { xs: '90%', sm: '90%', md: '85%', lg: '75%', xl: '60%' }, 
                     height: { xs: 1200, sm: 1200, md: 700, lg: 700, xl: 700 },
                 }}/> 
                 : 

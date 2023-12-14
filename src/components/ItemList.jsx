@@ -33,7 +33,7 @@ export const ItemList = ({shoes}) => {
                             p: 0,
                             pb: 0,
                         }}>
-                            <Typography variant="h6" sx={{alignSelf: 'center'}}> USD {item.price}</Typography>
+                            <Typography variant="h5" sx={{alignSelf: 'center', color: '#03a9f4'}}> USD {item.price}</Typography>
                         </CardContent>
                 </Card>
             ))}

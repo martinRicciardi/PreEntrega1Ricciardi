@@ -1,6 +1,6 @@
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
 
@@ -14,7 +14,7 @@ export const CartWidget = () => {
         <Link to={'/cart'}>
             <IconButton size="large" aria-label="show 4 new items" color="info">
                 <Badge badgeContent={cartQuantity} color="error">
-                    <ShoppingCartIcon sx={{color: 'inherit'}}/>
+                    <LocalMallOutlinedIcon fontSize='medium' sx={{color: 'black'}}/>
                 </Badge>
             </IconButton>
         </Link>

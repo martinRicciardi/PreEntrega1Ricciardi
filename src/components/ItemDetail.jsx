@@ -20,12 +20,14 @@ export const ItemDetail = ({ data }) => {
         }} key={data?.id}>
                 <Box sx={{
                     width: { xs: '80%', sm: '55%', md: '55%', lg: '55%', xl: '55%' },
-                    height: { xs: '70%', sm: '70%', md: 700, lg: 700, xl: 700 },
+                    height: { xs: '70%', sm: '70%', md: '100%', lg: '100%', xl: '100%' },
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center'
                 }}>
-                    <img src={data?.photo} alt={data?.name} />
+                    <div>
+                        <img src={data?.photo} alt={data?.name} />
+                    </div>
                 </Box>
                 <CardContent sx={{
                     display: 'flex',
@@ -41,9 +43,9 @@ export const ItemDetail = ({ data }) => {
                         justifyContent: 'space-around'
                     }}>
                         <Typography sx={{ color:'#03a9f4' }} variant="h4">{data?.name}</Typography>
-                        <Typography sx={{ fontSize: { xs: 17, sm: 17, md: 20, lg: 20, xl: 20 } }}>{data?.description}</Typography>
-                        <Typography variant='h4'>Stock: {data?.stock}</Typography>
-                        <Typography variant='h4'>USD {data?.price}</Typography>
+                        <Typography sx={{ fontSize: { xs: 15, sm: 15, md: 18, lg: 18, xl: 18 } }}>{data?.description}</Typography>
+                        <Typography variant='h5'>Stock: {data?.stock}</Typography>
+                        <Typography variant='h5'>USD {data?.price}</Typography>
                     </Box>
                         <ItemCount data={data} initial={1} stock={data?.stock}/> 
                 </CardContent>

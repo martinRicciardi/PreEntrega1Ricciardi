@@ -6,6 +6,8 @@ import Container from '@mui/material/Container';
 import CircularProgress from '@mui/joy/CircularProgress';
 import { ItemList } from "./ItemList";
 
+import '../styles/ItemListContainer.css'
+
 export const ItemListContainer = (props) => {
 
     const [shoes, setShoes] = useState()
@@ -35,10 +37,10 @@ return(
                     display: 'flex',
                     flexDirection: 'row',
                     flexWrap: 'wrap',
-                    justifyContent: 'space-around'
+                    justifyContent: 'space-around',
                 }}>
                     {loading ? 
-                        <CircularProgress color="neutral" size="md" />
+                        <CircularProgress color="neutral" size="md" sx={{ height: '90vh', width: '20vw'}} />
                         : 
                         <ItemList shoes={shoes}/> 
                     }
