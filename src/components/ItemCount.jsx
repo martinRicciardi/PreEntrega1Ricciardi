@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import Alert from '@mui/joy/Alert';
 
 export const ItemCount = ({ data, initial, stock }) => {
 
@@ -34,7 +35,7 @@ export const ItemCount = ({ data, initial, stock }) => {
                 <Typography variant='h5'>{count}</Typography>
                 <ArrowDropUpIcon onClick={handleIncrease}></ArrowDropUpIcon>
             </Box>
-            <Button sx={{ backgroundColor: '#fff', boxShadow: 3, color: 'black'}} size="large" onClick={() => {addItem(data, count); setCount(initial)}} variant="contained" color="primary">Add Cart</Button>
+            <Button sx={{ backgroundColor: '#fff', boxShadow: 3, color: 'black'}} size="large" onClick={() => {addItem(data, count); setCount(initial); return <Alert>This is a basic Alert.</Alert>;}} variant="contained" color="primary">Add Cart</Button>
         </Box>
     )
 }
