@@ -37,7 +37,7 @@ export const Cart = () => {
 
         addDoc(orderCollection, order).then(({ id }) => {
             if(id) {
-                alert("Thank you for your purchase, your order number is" + id)
+                alert("Thank you for your purchase, your order number is " + id)
             }
         })
         .finally(() => {
